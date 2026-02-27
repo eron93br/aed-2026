@@ -4,13 +4,40 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import plotly.figure_factory as ff
+from numpy.random import default_rng as rng
+from PIL import Image
+
+back_img = Image.open('assets/logo_cesar.png')
+
+with st.sidebar:
+    st.image(back_img)
+    st.write("Engenharia e Análise de Dados 2025.2")
+    options = ["Pizza", "Barra", "Scatterplot"]
+    selection = st.pills("Escolha o seu tipo de visualizacao:", options, selection_mode="multi")
+    print(f"Opcao selecinada: {selection}.")
+
 
 st.title("Meu Primeiro Dashboard")
 
 st.header("Cotacao de Ativos")
 
-print("agora o bicho vai pegar!! ;)")
 st.write("Agora estou fazendo um dashboard com a turma do CESAR 2025.2!!!!")
+
+st.header("Data Visualization")
+
+hist_data = [
+    rng(0).standard_normal(200) - 2,
+    rng(1).standard_normal(200),
+    rng(2).standard_normal(200) + 2,
+]
+group_labels = ["Group 1", "Group 2", "Group 3"]
+
+fig = ff.create_distplot(
+    hist_data, group_labels, bin_size=[0.1, 0.25, 0.5]
+)
+
+st.plotly_chart(fig)
 
 st.header("Sobre esse Dashboard")
 
