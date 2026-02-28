@@ -6,3 +6,4 @@ streamlit
 plotly
 scipy
 python-bcb
+xlrd
